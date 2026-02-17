@@ -32,6 +32,65 @@ function init() {
 
     // Initialize draggable photos
     initDraggablePhotos();
+
+    // Initialize PWA install prompt
+    initPWA();
+}
+
+// PWA Installation
+let deferredPrompt;
+
+function initPWA() {
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered:', registration);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        });
+    }
+
+    // Capture install prompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent default browser prompt
+        e.preventDefault();
+        // Store event for later use
+        deferredPrompt = e;
+
+        // Show install prompt after 3 seconds
+        setTimeout(() => {
+            showInstallPrompt();
+        }, 3000);
+    });
+
+    // Detect if already installed
+    window.addEventListener('appinstalled', () => {
+        console.log('PWA installed successfully!');
+        deferredPrompt = null;
+    });
+}
+
+function showInstallPrompt() {
+    if (!deferredPrompt) {
+        return;
+    }
+
+    // Show the install prompt
+    deferredPrompt.prompt();
+
+    // Wait for the user's response
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+        } else {
+            console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null;
+    });
 }
 
 // Initialize draggable photos
