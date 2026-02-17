@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Đếm ngày yêu nhau - Kỷ niệm những khoảnh khắc ngọt ngào">
+    <meta name="theme-color" content="#FF6B9D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Ngày Yêu Nhau ❤️</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated background particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Floating hearts animation -->
+    <div class="hearts-container" id="hearts"></div>
+
+    <!-- Floating Photos -->
+    <div class="floating-photos">
+        <div class="floating-photo floating-photo-1">
+            <div class="polaroid">
+                <img src="photo1.jpg" alt="Kỷ niệm 1">
+                <div class="polaroid-caption">💕 iuuuuu 💕</div>
+            </div>
+        </div>
+        <div class="floating-photo floating-photo-2">
+            <div class="polaroid">
+                <img src="photo2.png" alt="Kỷ niệm 2">
+                <div class="polaroid-caption">❤️ em Mì ❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Counter screen -->
+        <div class="counter-screen" id="counterScreen">
+            <div class="glass-card counter-card">
+                <h1 class="title-romantic">
+                    <span id="displayYourName">Bạn</span> ❤️ <span id="displayPartnerName">Người yêu</span>
+                </h1>
+
+                <div class="main-counter">
+                    <div class="counter-label">Chúng ta đã yêu nhau được</div>
+                    <div class="days-counter" id="daysCounter">0</div>
+                    <div class="days-text">ngày</div>
+                </div>
+
+                <div class="detailed-counter">
+                    <div class="counter-item">
+                        <div class="counter-value" id="hoursCounter">0</div>
+                        <div class="counter-unit">giờ</div>
+                    </div>
+                    <div class="counter-divider">:</div>
+                    <div class="counter-item">
+                        <div class="counter-value" id="minutesCounter">0</div>
+                        <div class="counter-unit">phút</div>
+                    </div>
+                    <div class="counter-divider">:</div>
+                    <div class="counter-item">
+                        <div class="counter-value" id="secondsCounter">0</div>
+                        <div class="counter-unit">giây</div>
+                    </div>
+                </div>
+
+                <div class="start-date-display">
+                    <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>Bắt đầu từ: <strong id="displayStartDate"></strong></span>
+                </div>
+
+                <div class="milestones" id="milestones"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
