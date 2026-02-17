@@ -39,12 +39,13 @@ function init() {
 
 // PWA Installation
 let deferredPrompt;
+const installButton = document.getElementById('installButton');
 
 function initPWA() {
     // Register Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('/anni/sw.js')
                 .then(registration => {
                     console.log('Service Worker registered:', registration);
                 })
@@ -61,17 +62,39 @@ function initPWA() {
         // Store event for later use
         deferredPrompt = e;
 
-        // Show install prompt after 3 seconds
-        setTimeout(() => {
-            showInstallPrompt();
-        }, 3000);
+        // Show install button
+        if (installButton) {
+            installButton.style.display = 'flex';
+        }
     });
+
+    // Install button click handler
+    if (installButton) {
+        installButton.addEventListener('click', () => {
+            if (deferredPrompt) {
+                showInstallPrompt();
+            } else {
+                // Fallback: Show instructions for manual installation
+                showInstallInstructions();
+            }
+        });
+    }
 
     // Detect if already installed
     window.addEventListener('appinstalled', () => {
         console.log('PWA installed successfully!');
         deferredPrompt = null;
+        if (installButton) {
+            installButton.style.display = 'none';
+        }
     });
+
+    // Show button after 2 seconds if PWA prompt available
+    setTimeout(() => {
+        if (deferredPrompt && installButton) {
+            installButton.style.display = 'flex';
+        }
+    }, 2000);
 }
 
 function showInstallPrompt() {
@@ -86,11 +109,22 @@ function showInstallPrompt() {
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
             console.log('User accepted the install prompt');
+            if (installButton) {
+                installButton.style.display = 'none';
+            }
         } else {
             console.log('User dismissed the install prompt');
         }
         deferredPrompt = null;
     });
+}
+
+function showInstallInstructions() {
+    alert('📱 Cách cài đặt:\n\n' +
+        '1. Nhấn menu (3 chấm) góc trên\n' +
+        '2. Chọn "Add to Home screen" hoặc "Thêm vào màn hình chính"\n' +
+        '3. Nhấn "Add" để cài đặt\n\n' +
+        '💡 Lưu ý: Vui lòng dùng Chrome để cài đặt!');
 }
 
 // Initialize draggable photos
