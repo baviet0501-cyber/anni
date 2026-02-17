@@ -1,13 +1,13 @@
 // Service Worker for PWA
 const CACHE_NAME = 'vjet-mi-love-counter-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/style.css',
-    '/script.js',
-    '/manifest.json',
-    '/photo1.jpg',
-    '/photo2.png'
+    '/anni/',
+    '/anni/index.html',
+    '/anni/style.css',
+    '/anni/script.js',
+    '/anni/manifest.json',
+    '/anni/photo1.jpg',
+    '/anni/photo2.png'
 ];
 
 // Install event - cache files
