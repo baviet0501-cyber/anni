@@ -1,12 +1,12 @@
 // Service Worker for PWA
-const CACHE_NAME = 'vjet-mi-love-counter-v2';
+const CACHE_NAME = 'vjet-mi-love-counter-v3';
 const urlsToCache = [
     '/anni/',
     '/anni/index.html',
     '/anni/style.css',
     '/anni/script.js',
     '/anni/manifest.json',
-    '/anni/image/photo1.jpg',
+    '/anni/image/photo1.png',
     '/anni/image/photo2.png',
     '/anni/image/icon-192.png',
     '/anni/image/icon-512.png'
